@@ -110,7 +110,18 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
             elm.select2(opts);
           });
         }
-
+        if (attrs.uiSelect2) {
+          scope.$watch(attrs.uiSelect2, function(newVal) {
+            elm.select2(angular.extend({}, options, scope.$eval(attrs.uiSelect2)));
+          });
+        }
+        if (attrs.ngModel) {
+          scope.$watch(attrs.ngModel, function(newVal) {
+            if (newVal && typeof newVal === 'object') {
+              elm.select2('data', scope.$eval(attrs.ngModel));
+            } 
+          });
+        }
         // Set initial value since Angular doesn't
         //elm.val(scope.$eval(attrs.ngModel));
 
