@@ -115,6 +115,11 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
             elm.select2(angular.extend({}, options, scope.$eval(attrs.uiSelect2)));
           });
         }
+        if (attrs.select2Placeholder) {
+          scope.$watch(attrs.select2Placeholder, function() {
+             elm.select2(angular.extend({}, options, scope.$eval(attrs.uiSelect2)));
+          });
+        }
         if (attrs.ngModel) {
           scope.$watch(attrs.ngModel, function(newVal) {
             if (newVal && typeof newVal === 'object') {
