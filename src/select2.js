@@ -191,7 +191,9 @@ angular.module('ui.select2', []).value('uiSelect2Config', {}).directive('uiSelec
         if(attrs.uiSelect2) {
             scope.$watch(attrs.uiSelect2, function(newVal) {
                 if(newVal) {
-                elm.select2(angular.extend({}, options, scope.$eval(attrs.uiSelect2)));
+                    $timeout(function() {
+                        elm.select2(angular.extend({}, options, scope.$eval(attrs.uiSelect2)));
+                    });
                 }
             });
         }
